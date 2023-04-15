@@ -1,15 +1,14 @@
-import Input from "./components/Input";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Inputs from "./components/Inputs";
 import AddButton from "./components/AddButton";
+import { Container } from "@mui/material";
 
 function App() {
     return (
         <div className="App">
-            <div className="container-sm">
+            <Container maxWidth="sm">
                 <AddButton />
-                <Input />
-                <Input />
-            </div>
+                <Inputs />
+            </Container>
         </div>
     );
 }
