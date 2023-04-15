@@ -1,10 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { removeTimer } from "../redux/timerSlice";
 
-const DeleteButton = () => {
+const DeleteButton = ({ timer }) => {
+    const dispatch = useDispatch();
+    const deleteHandler = () => {
+        dispatch(removeTimer({ id: timer.id }));
+    };
     return (
         <span>
-            <button className="btn btn-danger">
+            <button className="btn btn-danger" onClick={deleteHandler}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
