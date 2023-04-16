@@ -4,6 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 export const timerSlice = createSlice({
     name: "timer",
     initialState: {
+        runningTime: {
+            running: false,
+            id: null,
+        },
         times: [
             {
                 id: uuidv4(),
@@ -13,12 +17,16 @@ export const timerSlice = createSlice({
         ],
     },
     reducers: {
+        toggleRunning: (state, { payload }) => {
+            const { id } = payload;
+            state.runningTime.running = !state.runningTime.running;
+            state.runningTime.id = id;
+        },
         addTimer: (state) => {
             state.times.push({ id: uuidv4(), min: "", sec: "" });
         },
         removeTimer: (state, { payload }) => {
             const { id } = payload;
-            console.log("id " + id);
             if (state.times.length > 1) {
                 state.times = state.times.filter((time) => {
                     return time.id !== id;
@@ -36,6 +44,6 @@ export const timerSlice = createSlice({
     },
 });
 
-export const { addTimer, removeTimer, updateMin, updateSec } =
+export const { toggleRunning, addTimer, removeTimer, updateMin, updateSec } =
     timerSlice.actions;
 export default timerSlice.reducer;

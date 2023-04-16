@@ -1,19 +1,16 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { updateMin, updateSec } from "../redux/timerSlice";
 
 const Input = ({ timer }) => {
     const dispatch = useDispatch();
-    const [minState, updateMinState] = useState("");
-    const [secState, updateSecState] = useState("");
+    const minState = useSelector((state) => state.timer.min);
+    const secState = useSelector((state) => state.timer.sec);
     const changeHandler = (e) => {
         if (e.target.name === "min") {
-            updateMinState(e.target.value);
             dispatch(updateMin({ id: timer.id, min: e.target.value }));
         } else {
-            updateSecState(e.target.value);
             dispatch(updateSec({ id: timer.id, sec: e.target.value }));
         }
     };

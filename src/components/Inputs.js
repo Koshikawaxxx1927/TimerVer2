@@ -11,17 +11,17 @@ const Inputs = () => {
         <Grid container spacing={1}>
             {timers.map((timer) => {
                 return (
-                    <>
-                        <Grid key={`${timer.id}-1`} item xs={6}>
+                    <React.Fragment key={timer.id}>
+                        <Grid item xs={6}>
                             <Input timer={timer} />
                         </Grid>
-                        <Grid key={`${timer.id}-2`} item xs={1}>
+                        <Grid item xs={1}>
                             <TimerStart timer={timer} />
                         </Grid>
-                        <Grid key={`${timer.id}-3`} item xs={1}>
+                        <Grid item xs={1}>
                             <DeleteButton timer={timer} />
                         </Grid>
-                    </>
+                    </React.Fragment>
                 );
             })}
         </Grid>

@@ -1,12 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { removeTimer } from "../redux/timerSlice";
+import { removeTimer, toggleRunning } from "../redux/timerSlice";
 
 const DeleteButton = ({ timer }) => {
     const dispatch = useDispatch();
+    const runningId = useSelector((state) => state.timer.runningTime.id);
     const deleteHandler = () => {
         dispatch(removeTimer({ id: timer.id }));
+        if (runningId === timer.id) {
+            dispatch(toggleRunning({ id: null }));
+        }
     };
     return (
         <span>
